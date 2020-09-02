@@ -1,6 +1,6 @@
 
 
-let users = {
+export const users = {
   sarahedo: {
     id: 'sarahedo',
     name: 'Sarah Edo',

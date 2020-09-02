@@ -1,9 +1,13 @@
 import React from "react";
 import { icon } from "semantic-ui-react";
 import { pig } from "../components/images/avatars/pig.png";
+import {useSelector} from "react-redux"
 
-class NavMenu extends React.Component {
-  render() {
+
+function NavMenu(){
+  const authedUser = useSelector(state=>state.authedUser)
+  console.log(authedUser)
+
     return (
       <div className="ui secondary pointing menu">
         <a className="item">Home </a>
@@ -12,7 +16,7 @@ class NavMenu extends React.Component {
         <div className="right menu">
           <a className="item">
             <i className="user circle icon"></i>
-            Hi username.            
+            hi {authedUser.userId}   
           </a>
 
           <a className="item">
@@ -22,7 +26,7 @@ class NavMenu extends React.Component {
         </div>
       </div>
     );
-  }
+  
 }
 
 export default NavMenu;

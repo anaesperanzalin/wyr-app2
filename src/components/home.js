@@ -1,16 +1,19 @@
-import React from "react"
-import NavMenu from "./NavMenu"
+import React from "react";
+import NavMenu from "./NavMenu";
+import PollTeaser from "./PollTeaser";
+import { useSelector } from "react-redux";
 
-class Home extends React.Component{
-    render(){
-        return(
-            <div>
-            <header>This is Homepage</header>
-            <NavMenu/>
-            </div>
-        )
-    }
+function Home() {
+    const authedUser = useSelector(state=>state.authedUser)
+    console.log(authedUser)
+  return (
+    <div>
+      <header>This is Homepage</header>
+      <NavMenu />
 
+      <PollTeaser />
+    </div>
+  );
 }
 
-export default Home
+export default Home;
