@@ -3,22 +3,28 @@ import animals from "./images/avatars/animals.png"
 import users from "../utils/DATA"
 import {setAuthedUser} from "./actions/authedusers"
 import {useDispatch, useSelector} from "react-redux";
+import {Link} from 'react-router-dom';
+import {useHistory} from "react-router-dom"
+
 
 function Login (){
     const [isLoggedIn, setIsLoggedIn] = React.useState(false)
     const [userId, setId] = React.useState("")
     const dispatch= useDispatch()
     const setAuthedUser = useSelector(state => state.authedUser)
-
+    const history= useHistory();
 
     function selectId(event) {
         event.preventDefault()
         setId(event.target.value)
     }
 
+
+
     function handleSubmit (event){
         event.preventDefault()
         setIsLoggedIn(true)
+        history.push("/home");
         dispatch({
             type: 'SET_AUTHED_USER', 
             payload: userId
@@ -42,7 +48,7 @@ function Login (){
                     <option value="johndoe">John </option>
                     
                 </select>
-                <button onClick={handleSubmit} disabled={userId == ""} >
+                <button onClick={handleSubmit} disabled={userId == ""}> 
                     login
                 </button>
                 </form>
