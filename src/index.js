@@ -1,23 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App'
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose} from 'redux';
 import { Provider } from 'react-redux';
 import {rootReducer} from './components/reducers/index'
 import {BrowserRouter} from 'react-router-dom';
+import middleware from "./middleware"
+import {composeWithDevTools} from 'redux-devtools-extension'
 
+// export const store = createStore(rootReducer, composeWithDevTools(
+//   applyMiddleware(...middleware),
+// ));
 
-export const store = createStore(rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  );
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// const store = createStore(rootReducer, /* preloadedState, */ composeEnhancers(
+//     applyMiddleware(...middleware)
+//   ));
 
-  // to do list : only return one component 
-  
-
-
-
+const store=createStore(rootReducer, middleware);
 
 ReactDOM.render(
+  <Provider store={store}>
     <App />,
+    </Provider>,
   document.getElementById('root')
 );

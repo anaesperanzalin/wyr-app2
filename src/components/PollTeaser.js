@@ -1,20 +1,60 @@
-import React from 'react';
+import React from "react";
+import { Tab } from "semantic-ui-react";
+import Question from "./question";
+import { useSelector } from "react-redux";
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux'
 
 
-class PollTeaser extends React.Component{
-    render(){
-        return(
+function PollTeaser({answered, unanswered}) {
+  const [isAnswered, setIsanswered]= React.useState(false);
+  
+  const setToAnswered=()=>{
+    setIsanswered(true);
+    console.log("it is setting to answered woohoo")
+  }
 
-            <div>
-                here comes a list of poll questions
+  const setToUnanswered=()=>{
+    setIsanswered(false);
+    console.log("it is setting to unanswered woohoo")
+  }
+  
+  const users = useSelector(state=>state.userReducer)
+  console.log(users)
+  const questions= useSelector(state=> state.questionReducer)
+  console.log(questions)
+
+
+  return( 
+    <div>
+        <div>
+          <button
+          onClick={setToUnanswered}>
+          Unanswered.... </button>
+
+          <button
+          onClick={setToAnswered}
+          >Answered...... </button>
+
+
+        </div>
+        <div>
+        <Question/>
+
+        </div>
+        
 
 
 
-            </div>
-        )
+
+        </div>
 
 
-    }
-}
 
-export default PollTeaser
+    )
+  };
+
+
+
+
+export default (PollTeaser);
