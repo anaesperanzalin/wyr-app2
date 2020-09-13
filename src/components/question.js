@@ -29,4 +29,6 @@ function mapStateToProps(state,{id}){
 
 
 
-export default Question;
+//export default connect (mapStateToProps)(Question);
+
+export default Question 
