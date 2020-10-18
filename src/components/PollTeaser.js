@@ -1,60 +1,82 @@
-import React from "react";
-import { Tab } from "semantic-ui-react";
-import Question from "./question";
-import { useSelector } from "react-redux";
-import {Link} from 'react-router-dom';
-import {connect} from 'react-redux'
+import React, {useState} from 'react';
+import {connect} from 'react-redux';
+import Question from './question';
 
+function PollTeaser({answered, unanswered}){
+  const [isAnswered, setIsAnswered] =useState(false);
 
-function PollTeaser({answered, unanswered}) {
-  const [isAnswered, setIsanswered]= React.useState(false);
-  
-  const setToAnswered=()=>{
-    setIsanswered(true);
-    console.log("it is setting to answered woohoo")
+  const setToAnswered =() => {
+      setIsAnswered(true);
   }
 
-  const setToUnanswered=()=>{
-    setIsanswered(false);
-    console.log("it is setting to unanswered woohoo")
-  }
+    const setToUnAnswered =()=>{
+      setIsAnswered(false);
+    }
   
-  const users = useSelector(state=>state.userReducer)
-  console.log(users)
-  const questions= useSelector(state=> state.questionReducer)
-  console.log(questions)
+  return(
+      <div>
 
-
-  return( 
-    <div>
         <div>
-          <button
-          onClick={setToUnanswered}>
-          Unanswered.... </button>
+          <a className={!isAnswered?"btn active ": "btn" }
+          onClick={setToUnAnswered}>Unanswered Questions</a>
 
-          <button
-          onClick={setToAnswered}
-          >Answered...... </button>
-
-
-        </div>
-        <div>
-        <Question/>
-
-        </div>
-        
-
-
-
+          <a className= {isAnswered?"btn active": "btn"}
+          onClick={setToAnswered}>Answered Questions</a>
 
         </div>
 
+        <ul className="questions">
+            {isAnswered && answered.map(id=> (
+              <li key={id}>
+                  <Question 
+                  key={id} 
+                  id={id}/>
+
+              </li>
+              ))
+            
+            }
+
+            {!isAnswered && unanswered.map(id=>
+              <li key={id}>  
+                <Question
+                key={id}
+                id={id}
+                >
+                </Question>
+              </li>
+
+            )}
 
 
-    )
-  };
+        </ul>
+
+
+      </div>
+
+
+
+  );
+
+
+}
+
+function mapStateToProps(state) {
+  const user = state.users[state.authUser];
+
+  const answered = [...Object.keys(user.answers)]
+      .sort((a, b) => state.questions[b].timestamp - state.questions[a].timestamp);
+  const unanswered = [...Object.keys(state.questions)
+      .filter(question => answered.indexOf(question) < 0)]
+      .sort((a, b) => state.questions[b].timestamp - state.questions[a].timestamp);
+
+  return {
+      answered: answered,
+      unanswered: unanswered
+  }
+}
 
 
 
 
-export default (PollTeaser);
+export default connect(mapStateToProps)(PollTeaser);

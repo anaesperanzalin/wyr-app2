@@ -8,16 +8,15 @@ import { Route } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import {useDispatch} from "react-redux"
 import {connect} from 'react-redux'
+import './index.css';
 
 function App() {
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getInitialData());
-        return () => {
+    },[dispatch]);
 
-        }
-    }, [dispatch]);
 
   return (
       <Router>

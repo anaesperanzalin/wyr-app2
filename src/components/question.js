@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-function Question({username, optionOne }) {
+function Question({username, optionOne, questionId }) {
+    console.log(questionId);
     return (<div>
         <div>
             <span> {username} asks:</span>
@@ -17,18 +18,13 @@ function Question({username, optionOne }) {
 
 }
 
-function mapStateToProps(state,{id}){
-    const user= state.users[state.questions[id].author]
-    return{
+function mapStateToProps(state, { id }) {
+    const user = state.users[state.questions[id].author];
+    return {
         username: user.name,
-        questionId: id, 
+        questionId: id,
         optionOne: state.questions[id].optionOne.text
-
     }
 }
 
-
-
-//export default connect (mapStateToProps)(Question);
-
-export default Question 
+export default connect(mapStateToProps)(Question);
