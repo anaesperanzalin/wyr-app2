@@ -32,9 +32,9 @@ function Login (){
     }
 
 
-    console.log(setAuthedUser);
-    console.log(userId);
-  console.log(isLoggedIn);
+    // console.log(setAuthedUser);
+//     console.log(userId);
+//   console.log(isLoggedIn);
     return(
         <div className="ui-container">   
             <h1>Please sign in to continue</h1>

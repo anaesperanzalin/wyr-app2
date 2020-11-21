@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-function Question({username, optionOne, questionId }) {
+function QuestionDetails({username, optionOne, optionTwo, questionId }) {
     console.log('questionId');
     console.log(questionId);
     return (<div>
@@ -11,8 +11,8 @@ function Question({username, optionOne, questionId }) {
         </div>
         <div>
             <div>
-                <div>Would you rather {optionOne} or...?</div>
-                <Link className="btn" to={`/question/${questionId}`}>Answer this poll</Link>
+                <div>Would you rather {optionOne} or...{optionTwo}?</div>
+               
             </div>
         </div>
     </div>);
@@ -20,14 +20,15 @@ function Question({username, optionOne, questionId }) {
 }
 
 function mapStateToProps(state, { id }) {
-    const user = state.users[state.questions[id].author];
-    // console.log('id')
-    // console.log(id)
+    const user = state.users[state.questions[id]];
+    console.log('id')
+    console.log(id)
     return {
         username: user.name,
         questionId: id,
-        optionOne: state.questions[id].optionOne.text
+        optionOne: state.questions[id].optionOne.text,
+        optionTwo: state.questions[id].optionTwo.text
     }
 }
 
-export default connect(mapStateToProps)(Question);
+export default connect(mapStateToProps)(QuestionDetails);

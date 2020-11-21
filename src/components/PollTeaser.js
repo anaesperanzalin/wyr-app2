@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {connect} from 'react-redux';
+import {connect, useSelector} from 'react-redux';
 import Question from './question';
 
 function PollTeaser({answered, unanswered}){
@@ -12,7 +12,10 @@ function PollTeaser({answered, unanswered}){
     const setToUnAnswered =()=>{
       setIsAnswered(false);
     }
+    const state = useSelector(state => state);
   
+    // console.log(state);
+    // console.log(state.authUser.userId)
   return(
       <div>
 
@@ -31,10 +34,12 @@ function PollTeaser({answered, unanswered}){
                   <Question 
                   key={id} 
                   id={id}/>
+                  <br/>
+                  <br/>
 
               </li>
               ))
-            
+              
             }
 
             {!isAnswered && unanswered.map(id=>
@@ -44,6 +49,8 @@ function PollTeaser({answered, unanswered}){
                 id={id}
                 >
                 </Question>
+                <br/>
+                <br/>
               </li>
 
             )}
@@ -62,7 +69,8 @@ function PollTeaser({answered, unanswered}){
 }
 
 function mapStateToProps(state) {
-  const user = state.users[state.authUser];
+  // console.log(state.users)
+  const user = state.users[state.authUser.userId];
 
   const answered = [...Object.keys(user.answers)]
       .sort((a, b) => state.questions[b].timestamp - state.questions[a].timestamp);
@@ -78,5 +86,5 @@ function mapStateToProps(state) {
 
 
 
-
+// export default PollTeaser;
 export default connect(mapStateToProps)(PollTeaser);

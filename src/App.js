@@ -4,11 +4,17 @@ import Home from "./components/home";
 import { Provider } from "react-redux";
 import { store } from "./index";
 import { getInitialData } from "./components/actions/shared";
-import { Route } from "react-router-dom";
-import { BrowserRouter as Router } from "react-router-dom";
-import {useDispatch} from "react-redux"
+import { 
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect
+} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux"
 import {connect} from 'react-redux'
 import './index.css';
+import QuestionDetails from "./components/QuestionDetails";
+ import NoMatch from "./components/NoMatch"
 
 function App() {
     const dispatch = useDispatch();
@@ -17,11 +23,17 @@ function App() {
         dispatch(getInitialData());
     },[dispatch]);
 
+  const authUser = useSelector(state => state.authUser);
+
+  
 
   return (
       <Router>
         <Route exact path="/" render={() => <Login />} />
-        <Route path="/home/" render={() => <Home />} />
+        <Route path="/home/" render={() => (authUser && authUser.userId) ? <Home /> : <Login /> } />
+        <Route path="/question/:id" render={() => <QuestionDetails/> }/>
+        
+      
       </Router>
   );
 }

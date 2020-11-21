@@ -7,7 +7,7 @@ export function authedUser(state = {
   switch (action.type) {
     case SET_AUTHED_USER:
       return {
-        // ...state,
+         ...state,
           userId: action.payload,
           loggedIn: true,
       };

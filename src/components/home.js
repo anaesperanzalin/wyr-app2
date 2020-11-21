@@ -7,7 +7,7 @@ import {Question} from "./question"
 
 function Home() {
     const authedUser = useSelector(state=>state.authedUser)
-    console.log(authedUser)
+    // console.log(authedUser)
     
   
   return (
