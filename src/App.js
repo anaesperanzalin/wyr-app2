@@ -15,6 +15,7 @@ import {connect} from 'react-redux'
 import './index.css';
 import QuestionDetails from "./components/QuestionDetails";
  import NoMatch from "./components/NoMatch"
+ import NewPoll from "./components/newpoll"
 
 function App() {
     const dispatch = useDispatch();
@@ -30,8 +31,12 @@ function App() {
   return (
       <Router>
         <Route exact path="/" render={() => <Login />} />
+        <Route exact path="/add" render={() => <NewPoll />} />
         <Route path="/home/" render={() => (authUser && authUser.userId) ? <Home /> : <Login /> } />
-        <Route path="/question/:id" render={() => <QuestionDetails/> }/>
+  <Route path="/question/:id"   render={({ match }) => {
+    console.log(match);
+    return (authUser && authUser.userId) ? <QuestionDetails id={match.params.id} /> : <Login />
+  }} />
         
       
       </Router>

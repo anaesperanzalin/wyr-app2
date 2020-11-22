@@ -11,6 +11,7 @@ import{showLoading, hideLoading} from "react-redux-loading"
 export const RECEIVE_QUESTION = "RECEIVE_QUESTION";
 export const RECEIVE_ANSWER = "RECEIVE_ANSWER";
 export const GET_INITIAL_DATA = "GET_INITIAL_DATA";
+export const SAVE_QUESTION_ANSWER= "SAVE_QUESTION_ANSWER";
 
 
 export function getInitialData() {

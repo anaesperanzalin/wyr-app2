@@ -13,9 +13,11 @@ function PollTeaser({answered, unanswered}){
       setIsAnswered(false);
     }
     const state = useSelector(state => state);
-  
-    // console.log(state);
-    // console.log(state.authUser.userId)
+    console.log('answered')
+    console.log(answered)
+    console.log('unanswered')
+    console.log(unanswered)
+    
   return(
       <div>
 

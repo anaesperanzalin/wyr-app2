@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 function Question({username, optionOne, questionId }) {
-    console.log('questionId');
-    console.log(questionId);
+    // console.log('questionId');
+    // console.log(questionId);
     return (<div>
         <div>
             <span> {username} asks:</span>

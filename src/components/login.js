@@ -31,10 +31,7 @@ function Login (){
         })
     }
 
-
-    // console.log(setAuthedUser);
-//     console.log(userId);
-//   console.log(isLoggedIn);
+    
     return(
         <div className="ui-container">   
             <h1>Please sign in to continue</h1>
@@ -46,6 +43,8 @@ function Login (){
                     <option value="tylermcginnis">Tyler </option>
                     <option value="sarahedo">Sarah </option>
                     <option value="johndoe">John </option>
+                    <option value="analin">Ana </option>
+                    <option value="dorishaha">Doris </option>
                     
                 </select>
                 <button onClick={handleSubmit} disabled={userId == ""}> 

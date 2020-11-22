@@ -4,7 +4,7 @@ export const users = {
   sarahedo: {
     id: 'sarahedo',
     name: 'Sarah Edo',
-    avatarURL: '/images/avatars/dog.png',
+    avatarURL: 'https://bit.ly/35U1fKs',
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
       "6ni6ok3ym7mf1p33lnez": 'optionTwo',
@@ -16,7 +16,7 @@ export const users = {
   tylermcginnis: {
     id: 'tylermcginnis',
     name: 'Tyler McGinnis',
-    avatarURL: '/images/avatars/elephant.png',
+    avatarURL: 'https://bit.ly/2USxrHL',
     answers: {
       "vthrdm985a262al8qx3do": 'optionOne',
       "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -26,7 +26,31 @@ export const users = {
   johndoe: {
     id: 'johndoe',
     name: 'John Doe',
-    avatarURL: '/images/avatars/monkey.png',
+    avatarURL: 'https://bit.ly/2IYHVmx',
+    answers: {
+      "xj352vofupe1dqz9emx13r": 'optionOne',
+      "vthrdm985a262al8qx3do": 'optionTwo',
+      "6ni6ok3ym7mf1p33lnez": 'optionTwo'
+    },
+    questions: ['6ni6ok3ym7mf1p33lnez', 'xj352vofupe1dqz9emx13r'],
+  },
+
+  analin: {
+    id: 'analin',
+    name: 'Ana Lin',
+    avatarURL: 'https://bit.ly/2USxL9r',
+    answers: {
+      "xj352vofupe1dqz9emx13r": 'optionOne',
+      "vthrdm985a262al8qx3do": 'optionTwo',
+      "6ni6ok3ym7mf1p33lnez": 'optionTwo'
+    },
+    questions: ['6ni6ok3ym7mf1p33lnez', 'xj352vofupe1dqz9emx13r'],
+  },
+
+  Doris: {
+    id: 'dorishaha',
+    name: 'Doris Haha',
+    avatarURL: 'https://bit.ly/2UQMcuM',
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',
@@ -34,6 +58,7 @@ export const users = {
     },
     questions: ['6ni6ok3ym7mf1p33lnez', 'xj352vofupe1dqz9emx13r'],
   }
+
 }
 
 
