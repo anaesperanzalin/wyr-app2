@@ -2,6 +2,8 @@ import React from "react"
 import {useDispatch} from "react-redux"
 import {saveQuestion} from "./actions/shared"
 import Home from "./home"
+import {connect} from "react-redux"
+import NavMenu from "./NavMenu"
 
 function NewPoll (){
     const [optionOneText, setOptionOneText] = React.useState("")
@@ -34,6 +36,7 @@ function NewPoll (){
 
     return(
         <div> 
+            <NavMenu/>
             <h1>Create your own poll!</h1>
             <h1>Would you rather... </h1>
             
@@ -66,4 +69,4 @@ function mapStateToProps(state) {
 }
 
 
-export default NewPoll
+export default connect(mapStateToProps)(NewPoll)

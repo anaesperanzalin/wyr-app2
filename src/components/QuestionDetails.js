@@ -38,7 +38,7 @@ function QuestionDetails({
     // console.log('value')
     // console.log(value)
 
-  dispatch(saveAnswer({authedUser, qid, value}))
+  dispatch(saveAnswer({authedUser, qid, answer}))
     
     
   }
@@ -116,12 +116,14 @@ function QuestionDetails({
 
             <h2> {optionOne}</h2>
               <h2>
+              {"optionOne" === answer && <div className="voted"> Your vote</div>}
                  {optionOneVotes} out of {totalVotes} voted this
               </h2>
               <h2>That's {optionOnePercent().toString().slice(0, 5)}% </h2>
               <br />
               <br />
               <br />
+              {"optionTwo" === answer && <div className="voted"> Your vote</div>}
               <h2> {optionTwo}</h2>
               <h2>
                 {" "}
@@ -191,11 +193,11 @@ function QuestionDetails({
 } */}
 
 function mapStateToProps(state, {id}) {
-  // console.log('state')
-  // console.log(state)
+  console.log('state')
+  console.log(state)
   
   const user = state.users[state.questions[id].author];
-  const authUser= state.users[state.authUser]
+  const authUser = state.authUser.userId;
   const question = state.questions[id];
 
 
@@ -212,6 +214,8 @@ function mapStateToProps(state, {id}) {
     // totalVotes:state.questions[id].optionOne.votes.length + state.questions[id].optionTwo.votes.length,
     //answer: state.authUser.answers[question.id]
     //answer: state.authUser.answers[question.id]
+    //answer: state.users[authUser].answers[question.id]
+    answer: state.users[authUser].answers[question.id]
   };
 }
 
