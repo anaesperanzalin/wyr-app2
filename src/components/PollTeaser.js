@@ -13,10 +13,10 @@ function PollTeaser({answered, unanswered}){
       setIsAnswered(false);
     }
     const state = useSelector(state => state);
-    console.log('answered')
-    console.log(answered)
-    console.log('unanswered')
-    console.log(unanswered)
+    // console.log('answered')
+    // console.log(answered)
+    // console.log('unanswered')
+    // console.log(unanswered)
     
   return(
       <div>

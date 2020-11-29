@@ -9,8 +9,8 @@ function Home() {
   const authUser = useSelector((state) => state.authUser);
   const state = useSelector((state) => state);
 
-  console.log("state");
-  console.log(state);
+  // console.log("state");
+  // console.log(state);
 
   return (
     <div>

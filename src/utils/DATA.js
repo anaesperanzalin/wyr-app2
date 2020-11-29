@@ -47,7 +47,7 @@ export const users = {
     questions: ['6ni6ok3ym7mf1p33lnez', 'xj352vofupe1dqz9emx13r'],
   },
 
-  Doris: {
+  doris: {
     id: 'dorishaha',
     name: 'Doris Haha',
     avatarURL: 'https://bit.ly/2UQMcuM',
