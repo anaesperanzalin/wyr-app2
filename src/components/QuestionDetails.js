@@ -20,10 +20,12 @@ function QuestionDetails({
   const state = useSelector((state) => state);
   console.log("state");
   console.log(state);
+  const [answered, setAnswered] = React.useState(false)
+  const [value, setValue] = React.useState("");
 
   const dispatch = useDispatch();
 
-  const [value, setValue] = React.useState("");
+  
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -31,7 +33,7 @@ function QuestionDetails({
 
   const answerQuestion = (event) => {
     event.preventDefault();
-
+    setAnswered(true);
     const answerId = value;
 
     dispatch(saveAnswer({ authedUser, questionId, answerId }));
@@ -53,7 +55,7 @@ function QuestionDetails({
       <div>
         <NavMenu />
 
-        {!answer ? (
+        {!answered ? (
           <div>
             <img
               src={state.users[state.questions[questionId].author].avatarURL}
