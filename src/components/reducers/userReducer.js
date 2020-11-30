@@ -1,4 +1,4 @@
-import {RECEIVE_USERS} from "../actions/users"
+import {RECEIVE_USERS, ADD_QUESTION_TO_USER} from "../actions/users"
 
 export function userReducer (state={}, action){
     switch(action.type){
@@ -9,6 +9,9 @@ export function userReducer (state={}, action){
         default: 
             return state
 
+
+    
+        };
+        
     } 
 
-}

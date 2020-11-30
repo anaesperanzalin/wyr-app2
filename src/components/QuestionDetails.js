@@ -3,8 +3,7 @@ import { connect, useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { RECEIVE_ANSWER } from "./actions/shared";
 import NavMenu from "./NavMenu";
-import {saveAnswer} from "./actions/shared"
-
+import { saveAnswer } from "./actions/shared";
 
 function QuestionDetails({
   authedUser,
@@ -12,40 +11,33 @@ function QuestionDetails({
   username,
   optionOne,
   optionTwo,
-  qid,
+  questionId,
   optionOneVotes,
   optionTwoVotes,
   totalVotes,
   answer,
 }) {
   const state = useSelector((state) => state);
-  
-  
-  const dispatch = useDispatch()
+  console.log("state");
+  console.log(state);
 
-  const [value, setValue] = React.useState('')
-  
+  const dispatch = useDispatch();
+
+  const [value, setValue] = React.useState("");
+
   const handleChange = (event) => {
-    setValue(event.target.value)
-  }
+    setValue(event.target.value);
+  };
 
   const answerQuestion = (event) => {
     event.preventDefault();
-    // console.log('authUser')
-    // console.log(authUser)
-    // console.log('questionId')
-    // console.log(questionId)
-    // console.log('value')
-    // console.log(value)
 
-  dispatch(saveAnswer({authedUser, qid, answer}))
-    
-    
-  }
+    const answerId = value;
 
+    dispatch(saveAnswer({ authedUser, questionId, answerId }));
+  };
 
   // }
-
 
   const optionOnePercent = () => {
     return (optionOneVotes / totalVotes) * 100;
@@ -54,95 +46,77 @@ function QuestionDetails({
     return (optionTwoVotes / totalVotes) * 100;
   };
 
-  
-
-
-  
-
   // };
-
 
   return (
     <div>
       <div>
         <NavMenu />
-        
-      {!answer?
-        <div> 
-          
-          
-          <img src= {state.users[state.questions[qid].author].avatarURL}/>
-                    
-          
-          <form className="detail-form"
-          onSubmit= {answerQuestion}>
-            <h2> {username} asks...</h2>
-            <p>Would you rather... </p>
-            <input 
-              name="answer"
-              type= "radio"
-              id="optionOne"
-              value= "optionOne"
-              onChange={handleChange}
+
+        {!answer ? (
+          <div>
+            <img
+              src={state.users[state.questions[questionId].author].avatarURL}
             />
-            <span>   {optionOne}</span>
 
-            <input
-              name="answer"
-              type="radio"
-              id="optionTwo"
-              value="optionTwo"
-              onChange={handleChange}
-            
-          
-            />
-            <span>   {optionTwo}</span>
+            <form className="detail-form" onSubmit={answerQuestion}>
+              <h2> {username} asks...</h2>
+              <p>Would you rather... </p>
+              <input
+                name="answer"
+                type="radio"
+                id="optionOne"
+                value="optionOne"
+                onChange={handleChange}
+              />
+              <span> {optionOne}</span>
 
-            <br/>
-            <br/>
-            <button 
-              className="btn"
-              type= "submit"
-            >Submit </button>
+              <input
+                name="answer"
+                type="radio"
+                id="optionTwo"
+                value="optionTwo"
+                onChange={handleChange}
+              />
+              <span> {optionTwo}</span>
 
-
-
-          </form>
-
-
-          </div>:
+              <br />
+              <br />
+              <button className="btn" type="submit">
+                Submit{" "}
+              </button>
+            </form>
+          </div>
+        ) : (
           <div>
             <p>Results</p>
 
             <h2> {optionOne}</h2>
-              <h2>
-              {"optionOne" === answer && <div className="voted"> Your vote</div>}
-                 {optionOneVotes} out of {totalVotes} voted this
-              </h2>
-              <h2>That's {optionOnePercent().toString().slice(0, 5)}% </h2>
-              <br />
-              <br />
-              <br />
-              {"optionTwo" === answer && <div className="voted"> Your vote</div>}
-              <h2> {optionTwo}</h2>
-              <h2>
-                {" "}
-                {optionTwoVotes} out of {totalVotes} voted this
-              </h2>
-              <h2>
-                That's {optionTwoPercent().toString().slice(0, 5)} %{" "}
-              </h2>
-
-
+            <h2>
+              {"optionOne" === answer && (
+                <div className="voted"> Your vote</div>
+              )}
+              {optionOneVotes} out of {totalVotes} voted this
+            </h2>
+            <h2>That's {optionOnePercent().toString().slice(0, 5)}% </h2>
+            <br />
+            <br />
+            <br />
+            {"optionTwo" === answer && <div className="voted"> Your vote</div>}
+            <h2> {optionTwo}</h2>
+            <h2>
+              {" "}
+              {optionTwoVotes} out of {totalVotes} voted this
+            </h2>
+            <h2>That's {optionTwoPercent().toString().slice(0, 5)} % </h2>
           </div>
-
-
-
-
-      }
+        )}
       </div>
-      </div> ) }
-{/*       
+    </div>
+  );
+}
+{
+  /*       
         
         <h2> {username} asks:</h2>
       </div>
@@ -190,32 +164,35 @@ function QuestionDetails({
       </div>
     </div>
   );
-} */}
+} */
+}
 
-function mapStateToProps(state, {id}) {
-  console.log('state')
-  console.log(state)
-  
+function mapStateToProps(state, { id }) {
+  // console.log('state')
+  // console.log(state)
+
   const user = state.users[state.questions[id].author];
   const authUser = state.authUser.userId;
   const question = state.questions[id];
 
-
+  // console.log('authuser')
+  // console.log(authUser)
+  // console.log('question')
+  // console.log(question)
 
   return {
     username: user.name,
-    qid: id,
+    questionId: id,
     avatarURL: user.avatarURL,
     optionOne: state.questions[id].optionOne.text,
     optionTwo: state.questions[id].optionTwo.text,
     authedUser: state.authUser.userId,
-    // optionOneVotes: state.questions[id].optionOne.votes.length,
-    // optionTwoVotes: state.questions[id].optionTwo.votes.length,
-    // totalVotes:state.questions[id].optionOne.votes.length + state.questions[id].optionTwo.votes.length,
-    //answer: state.authUser.answers[question.id]
-    //answer: state.authUser.answers[question.id]
-    //answer: state.users[authUser].answers[question.id]
-    answer: state.users[authUser].answers[question.id]
+    optionOneVotes: state.questions[id].optionOne.votes.length,
+    optionTwoVotes: state.questions[id].optionTwo.votes.length,
+    totalVotes:
+      state.questions[id].optionOne.votes.length +
+      state.questions[id].optionTwo.votes.length,
+    answerId: state.users[authUser].answers[question.id],
   };
 }
 

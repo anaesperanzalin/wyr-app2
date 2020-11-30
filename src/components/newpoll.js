@@ -65,6 +65,9 @@ function NewPoll (){
 function mapStateToProps(state) {
     return {
         authUser: state.authUser
+
+
+
     }
 }
 
