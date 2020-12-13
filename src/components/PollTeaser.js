@@ -18,10 +18,11 @@ function PollTeaser({answered, unanswered}){
     // console.log('unanswered')
     // console.log(unanswered)
     
+    
   return(
       <div>
 
-        <div>
+        <div style= {{display:"flex"}}>
           <a className={!isAnswered?"btn active ": "btn" }
           onClick={setToUnAnswered}>Unanswered Questions</a>
 
@@ -71,22 +72,29 @@ function PollTeaser({answered, unanswered}){
 }
 
 function mapStateToProps(state) {
-  // console.log(state.users)
   const user = state.users[state.authUser.userId];
-
+  
+  // console.log('user')
+  // console.log(user)
+  
   const answered = [...Object.keys(user.answers)]
       .sort((a, b) => state.questions[b].timestamp - state.questions[a].timestamp);
   const unanswered = [...Object.keys(state.questions)
       .filter(question => answered.indexOf(question) < 0)]
       .sort((a, b) => state.questions[b].timestamp - state.questions[a].timestamp);
 
+      // console.log('answered1')
+      // console.log(answered)
+      // console.log('unanswered')
+      // console.log(unanswered)
+
   return {
       answered: answered,
       unanswered: unanswered
+
+
   }
 }
 
 
-
-// export default PollTeaser;
 export default connect(mapStateToProps)(PollTeaser);

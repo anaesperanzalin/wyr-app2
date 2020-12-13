@@ -1,17 +1,48 @@
-import {RECEIVE_USERS, ADD_QUESTION_TO_USER} from "../actions/users"
+import { RECEIVE_USERS } from "../actions/users";
+import { RECEIVE_ANSWER } from "../actions/shared";
+import {RECEIVE_QUESTION} from "../actions/shared";
 
-export function userReducer (state={}, action){
-    switch(action.type){
-        case RECEIVE_USERS : return {
-            ...state,
-            ...action.users
-        };
-        default: 
-            return state
+export function userReducer(state = {}, action) {
+  switch (action.type) {
+      
+    case RECEIVE_USERS:
+        //console.log('action receive users')
+        //console.log(action)
+      return action.users;
+
+    case RECEIVE_QUESTION:
+        return {
+            ...state, 
+            [action.username]:{
+                ...state[action.username], questions:{...state[action.username].questions, [action.questionId]: action.question}
+            }
 
 
-    
-        };
+        }
+
+
+    case RECEIVE_ANSWER:
+        //console.log('state');
+        //console.log(state)
+        // console.log('action receive answers');
+        // console.log(action)
+        // console.log('action .username ');
+        // console.log(action.username);
+        // console.log('action .username answers ');
+        // console.log([action.username].answers)
+        // console.log('action .username answers ');
+        // console.log([action.questionId])
+        // console.log('action.option')z
+        // console.log(action.answer)
         
-    } 
+      return {
+        ...state, 
+        [action.username]: {
+            ...state[action.username], answers: { ...state[action.username].answers, [action.questionId]: action.answer},
+        },
+      };
 
+    default:
+      return state;
+  }
+}

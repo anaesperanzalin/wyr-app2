@@ -12,7 +12,10 @@ function Question({username, optionOne, questionId }) {
         <div>
             <div>
                 <div>Would you rather {optionOne} or...?</div>
-                <Link className="btn" to={`/question/${questionId}`}>Answer this poll</Link>
+                <Link className="btn" to={`/question/${questionId}`}>View this poll</Link>
+                
+
+
             </div>
         </div>
     </div>);

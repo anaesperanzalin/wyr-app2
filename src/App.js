@@ -38,7 +38,7 @@ function App() {
       <Route
         path="/question/:id"
         render={({ match }) => {
-          //console.log(match);
+          
           return authUser && authUser.userId ? (
             <QuestionDetails 
             id={match.params.id} />
