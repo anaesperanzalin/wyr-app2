@@ -31,6 +31,7 @@ function App() {
     <Router>
       <Route exact path="/" render={() => <Login />} />
       <Route exact path="/add" render={() => <NewPoll />} />
+      
       <Route
         path="/home/"
         render={() => (authUser && authUser.userId ? <Home /> : <Login />)}

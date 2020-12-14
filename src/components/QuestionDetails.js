@@ -16,16 +16,15 @@ function QuestionDetails({
   optionTwoVotes,
   totalVotes,
   answer,
+  answerId,
 }) {
   const state = useSelector((state) => state);
   console.log("state");
   console.log(state);
-  const [answered, setAnswered] = React.useState(false)
+  const [answered, setAnswered] = React.useState(false);
   const [value, setValue] = React.useState("");
 
   const dispatch = useDispatch();
-
-  
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -50,17 +49,19 @@ function QuestionDetails({
 
   // };
 
+  console.log("answerId");
+  console.log(answerId);
+
   return (
     <div>
       <div>
         <NavMenu />
-
-        {!answered ? (
-          <div>
-            <img
-              src={state.users[state.questions[questionId].author].avatarURL}
-            />
-
+        <div>
+          <img
+            src={state.users[state.questions[questionId].author].avatarURL}
+          />
+          
+          {!answerId ? (
             <form className="detail-form" onSubmit={answerQuestion}>
               <h2> {username} asks...</h2>
               <p>Would you rather... </p>
@@ -88,31 +89,36 @@ function QuestionDetails({
                 Submit{" "}
               </button>
             </form>
-          </div>
-        ) : (
-          <div>
-            <p>Results</p>
+          ) : (
+            <div>
+              <h2> {username} asks...</h2>
+             <p>Would you rather {optionOne} or {optionTwo} ? </p>
+              <p>Results</p>
 
-            <h2> {optionOne}</h2>
-            <h2>
-              {"optionOne" === answer && (
+              <h2> {optionOne}</h2>
+              <h2>
+                {"optionOne" === answer && (
+                  <div className="voted"> Your vote</div>
+                )}
+                {optionOneVotes} out of {totalVotes} voted this
+              </h2>
+              <h2>That's {optionOnePercent().toString().slice(0, 5)}% </h2>
+              <br />
+              <br />
+              <br />
+              {"optionTwo" === answer && (
                 <div className="voted"> Your vote</div>
               )}
-              {optionOneVotes} out of {totalVotes} voted this
-            </h2>
-            <h2>That's {optionOnePercent().toString().slice(0, 5)}% </h2>
-            <br />
-            <br />
-            <br />
-            {"optionTwo" === answer && <div className="voted"> Your vote</div>}
-            <h2> {optionTwo}</h2>
-            <h2>
-              {" "}
-              {optionTwoVotes} out of {totalVotes} voted this
-            </h2>
-            <h2>That's {optionTwoPercent().toString().slice(0, 5)} % </h2>
-          </div>
-        )}
+              <h2> {optionTwo}</h2>
+              <h2>
+                {" "}
+                {optionTwoVotes} out of {totalVotes} voted this
+              </h2>
+              <h2>That's {optionTwoPercent().toString().slice(0, 5)} % </h2>
+            </div>
+          )}
+        </div>
+        
       </div>
     </div>
   );

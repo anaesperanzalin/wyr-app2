@@ -1,14 +1,17 @@
 import React from "react"
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import {saveQuestion} from "./actions/shared"
 import Home from "./home"
 import {connect} from "react-redux"
 import NavMenu from "./NavMenu"
+import { Redirect } from 'react-router-dom'
 
-function NewPoll (){
+
+function NewPoll (authedUser){
+    const state = useSelector((state) => state)
     const [optionOneText, setOptionOneText] = React.useState("")
     const [optionTwoText, setOptionTwoText] = React.useState("")
-    const [home, setHome]= React.useState(false)
+    const [toHome, setHome]= React.useState(false)
     
     const handleOptionOneChange = (event) => {
         setOptionOneText(event.target.value)
@@ -22,25 +25,37 @@ function NewPoll (){
 
     const addQuestion = (event) =>{
         event.preventDefault();
-        dispatch(saveQuestion(optionOneText, optionTwoText))
+        console.log('optionOnetext and two')
+        console.log(optionOneText);
+        console.log(optionTwoText);
+        console.log('authedUser ID')
+        console.log(authedUser.authedUser.userId)
+        dispatch(saveQuestion(optionOneText, optionTwoText, authedUser.authedUser.userId))
+        
         setOptionOneText("")
         setOptionTwoText("")
         setHome(true)
 
     }
 
-    if (home === true) {
-        return <Home/>
+    if (toHome === true) {
+        return <Redirect to='/home' />
     }
+
+
+    console.log("state")
+    console.log(state)
+    
 
 
     return(
         <div> 
             <NavMenu/>
+        
             <h1>Create your own poll!</h1>
             <h1>Would you rather... </h1>
             
-            <form>
+            <form onSubmit = {addQuestion}>
             <p> Enter your option 1</p>
             <input type= "text"
             onChange = {handleOptionOneChange}
@@ -64,7 +79,7 @@ function NewPoll (){
 
 function mapStateToProps(state) {
     return {
-        authUser: state.authUser
+        authedUser: state.authUser
 
 
 
