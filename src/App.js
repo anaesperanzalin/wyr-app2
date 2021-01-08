@@ -16,6 +16,7 @@ import "./index.css";
 import QuestionDetails from "./components/QuestionDetails";
 import NoMatch from "./components/NoMatch";
 import NewPoll from "./components/newpoll";
+import LeaderBoard from "./components/leaderboard";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ function App() {
     <Router>
       <Route exact path="/" render={() => <Login />} />
       <Route exact path="/add" render={() => <NewPoll />} />
+      <Route exact path="/leaderboard" render={() => <LeaderBoard />} />
       
       <Route
         path="/home/"

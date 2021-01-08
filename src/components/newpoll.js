@@ -25,11 +25,7 @@ function NewPoll (authedUser){
 
     const addQuestion = (event) =>{
         event.preventDefault();
-        console.log('optionOnetext and two')
-        console.log(optionOneText);
-        console.log(optionTwoText);
-        console.log('authedUser ID')
-        console.log(authedUser.authedUser.userId)
+        
         dispatch(saveQuestion(optionOneText, optionTwoText, authedUser.authedUser.userId))
         
         setOptionOneText("")
@@ -43,9 +39,6 @@ function NewPoll (authedUser){
     }
 
 
-    console.log("state")
-    console.log(state)
-    
 
 
     return(

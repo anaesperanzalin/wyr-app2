@@ -5,8 +5,8 @@ import { RECEIVE_QUESTION } from "../actions/shared";
 export function userReducer(state = {}, action) {
   switch (action.type) {
     case RECEIVE_USERS:
-      console.log("action receive users");
-      console.log(action);
+      //console.log("action receive users");
+      //console.log(action);
 
       return action.users;
 

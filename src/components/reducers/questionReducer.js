@@ -2,8 +2,6 @@ import {RECEIVE_QUESTIONS} from "../actions/questions"
 import {RECEIVE_ANSWER, RECEIVE_QUESTION} from "../actions/shared"
 
 export function questionReducer(state = {}, action) {
-    console.log('action')
-    console.log(action)
     
     switch(action.type) {
       case RECEIVE_QUESTIONS: return action.questions;

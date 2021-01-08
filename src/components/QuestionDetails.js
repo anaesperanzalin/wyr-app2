@@ -19,8 +19,7 @@ function QuestionDetails({
   answerId,
 }) {
   const state = useSelector((state) => state);
-  console.log("state");
-  console.log(state);
+  
   const [answered, setAnswered] = React.useState(false);
   const [value, setValue] = React.useState("");
 
@@ -49,9 +48,7 @@ function QuestionDetails({
 
   // };
 
-  console.log("answerId");
-  console.log(answerId);
-
+  
   return (
     <div>
       <div>

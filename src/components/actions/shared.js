@@ -42,10 +42,6 @@ export function saveQuestion(optionOneText, optionTwoText, author) {
   return (dispatch) => {
     dispatch(showLoading());
     _saveQuestion({ optionOneText, optionTwoText, author }).then((question) => {
-      // console.log('question')
-      // console.log(question)
-      console.log('author')
-      console.log(author)
       
 
       dispatch(receiveQuestion(question));
@@ -64,8 +60,7 @@ export function receiveAnswer(username, questionId, answer) {
 }
 
 export function receiveQuestion(question) {
-  console.log('question')
-  console.log(question)
+  
   return {
     type: RECEIVE_QUESTION,
     question,
