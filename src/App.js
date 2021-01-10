@@ -9,14 +9,15 @@ import {
   Route,
   Link,
   Redirect,
+  Switch
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { connect } from "react-redux";
 import "./index.css";
 import QuestionDetails from "./components/QuestionDetails";
-import NoMatch from "./components/NoMatch";
 import NewPoll from "./components/newpoll";
 import LeaderBoard from "./components/leaderboard";
+import NoMatch from "./components/NoMatch"
 
 function App() {
   const dispatch = useDispatch();
@@ -30,16 +31,15 @@ function App() {
 
   return (
     <Router>
+      <Switch>
       <Route exact path="/" render={() => <Login />} />
       <Route exact path="/add" render={() => <NewPoll />} />
       <Route exact path="/leaderboard" render={() => <LeaderBoard />} />
-      
       <Route
-        path="/home/"
-        render={() => (authUser && authUser.userId ? <Home /> : <Login />)}
-      />
+        exact path="/home/"
+        render={() => (authUser && authUser.userId ? <Home /> : <Login />)}      />
       <Route
-        path="/question/:id"
+        exact path="/question/:id"
         render={({ match }) => {
           
           return authUser && authUser.userId ? (
@@ -50,6 +50,8 @@ function App() {
           );
         }}
       />
+      <Route path ="*"> <NoMatch/></Route> 
+      </Switch>
     </Router>
   );
 }

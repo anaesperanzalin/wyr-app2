@@ -7,6 +7,9 @@ function LeaderBoard(leaderboardData) {
 
   return (
     <div>
+       <NavMenu/>
+    <div>
+      
       {leaderboardData.leaderboardData.map((user, idx) => (
         <div key={idx}>
           
@@ -30,12 +33,13 @@ function LeaderBoard(leaderboardData) {
         </div>
       ))}
     </div>
+    </div>
   );
 }
 
 function mapStateToProps({ users}) {
   const leaderboardData = Object.values(users)
-
+  
     .map((user) => ({
       id: user.id,
       name: user.name,

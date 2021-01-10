@@ -19,7 +19,7 @@ function QuestionDetails({
   answerId,
 }) {
   const state = useSelector((state) => state);
-  
+
   const [answered, setAnswered] = React.useState(false);
   const [value, setValue] = React.useState("");
 
@@ -37,8 +37,6 @@ function QuestionDetails({
     dispatch(saveAnswer({ authedUser, questionId, answerId }));
   };
 
-  // }
-
   const optionOnePercent = () => {
     return (optionOneVotes / totalVotes) * 100;
   };
@@ -46,9 +44,6 @@ function QuestionDetails({
     return (optionTwoVotes / totalVotes) * 100;
   };
 
-  // };
-
-  
   return (
     <div>
       <div>
@@ -57,7 +52,7 @@ function QuestionDetails({
           <img
             src={state.users[state.questions[questionId].author].avatarURL}
           />
-          
+
           {!answerId ? (
             <form className="detail-form" onSubmit={answerQuestion}>
               <h2> {username} asks...</h2>
@@ -89,13 +84,17 @@ function QuestionDetails({
           ) : (
             <div>
               <h2> {username} asks...</h2>
-             <p>Would you rather {optionOne} or {optionTwo} ? </p>
+              <p>
+                Would you rather {optionOne} or {optionTwo} ?{" "}
+              </p>
               <p>Results</p>
 
               <h2> {optionOne}</h2>
               <h2>
-                {"optionOne" === answer && (
-                  <div className="voted"> Your vote</div>
+                {"optionOne" === answerId && (
+                  <div>
+                    <h1 style={{ color: "green" }}>This is Your vote!</h1>
+                  </div>
                 )}
                 {optionOneVotes} out of {totalVotes} voted this
               </h2>
@@ -103,8 +102,10 @@ function QuestionDetails({
               <br />
               <br />
               <br />
-              {"optionTwo" === answer && (
-                <div className="voted"> Your vote</div>
+              {"optionTwo" === answerId && (
+                <div>
+                  <h1 style={{ color: "green" }}>This is Your vote!</h1>
+                </div>
               )}
               <h2> {optionTwo}</h2>
               <h2>
@@ -115,7 +116,6 @@ function QuestionDetails({
             </div>
           )}
         </div>
-        
       </div>
     </div>
   );

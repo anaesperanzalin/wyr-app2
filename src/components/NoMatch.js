@@ -1,10 +1,18 @@
 import React from 'react'
+import NavMenu from "./NavMenu"
 
-const NoMatch = () => (
+function NoMatch(){
+
+return(
   <div>
-    <h3>Uh oh... Page not found </h3>
+  <NavMenu/>
+  <p>Uh oh, the page you're looking for doesn't exist</p>
+
   </div>
 )
+
+
+}
 
 
 export default NoMatch;
