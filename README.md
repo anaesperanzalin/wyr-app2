@@ -20,5 +20,8 @@ http://localhost:3000
 
 [![IMAGE ALT TEXT](https://i9.ytimg.com/vi_webp/-p4UN0TfqtA/mqdefault.webp?time=1610834100000&sqp=CLTBjYAG&rs=AOn4CLD0N-WR19JIxFIDmtOtskPg55HxVQ)](https://www.youtube.com/embed/-p4UN0TfqtA "Would You Rather App")
 
-
+Those to repos have been very helpful to me. 
+Thank you James Priest and Saleryan! 
+https://github.com/james-priest/reactnd-project-would-you-rather
+https://github.com/saleryan/WouldYouRather
 
