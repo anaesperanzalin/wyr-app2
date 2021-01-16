@@ -24,7 +24,7 @@ function Login (){
     function handleSubmit (event){
         event.preventDefault()
         setIsLoggedIn(true)
-        if (history.location.pathname.match("/home")){
+        if (history.location.pathname.match("/home") || history.location.pathname === '/') {
             history.push("/home");
         } else {
             history.push('/404');
