@@ -24,14 +24,18 @@ function Login (){
     function handleSubmit (event){
         event.preventDefault()
         setIsLoggedIn(true)
-        history.push("/home");
+        if (history.location.pathname.match("/home")){
+            history.push("/home");
+        } else {
+            history.push('/404');
+        }
         dispatch({
             type: 'SET_AUTHED_USER', 
             payload: userId
         })
     }
 
-    
+    console.log('history.location.pathname', history.location.pathname);
     return(
         <div className="ui-container">   
             <h1>Please sign in to continue</h1>

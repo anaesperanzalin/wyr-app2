@@ -15,10 +15,10 @@ export function userReducer(state = {}, action) {
         ...state,
         [action.question.author]: {
           ...state[action.question.author],
-          questions: {
+          questions: [
             ...state[action.question.author].questions,
-            [action.questionId]: action.question,
-          },
+            action.question.id,
+          ],
         },
       };
 

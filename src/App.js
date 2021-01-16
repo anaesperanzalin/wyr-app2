@@ -34,6 +34,7 @@ function App() {
       <Switch>
       <Route exact path="/" render={() => <Login />} />
       <Route exact path="/add" render={() => <NewPoll />} />
+      <Route exact path="/404" render={() => <NoMatch />} />
       <Route exact path="/leaderboard" render={() => <LeaderBoard />} />
       <Route
         exact path="/home/"
