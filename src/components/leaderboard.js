@@ -22,7 +22,7 @@ function LeaderBoard(leaderboardData) {
 
 
 
-          <img src={user.avatarURL}/>
+          <img src={user.avatarURL} alt = ""/>
           <p> Questions Answered: {user.answerCount} </p>
           <p> Questions Created: {user.questionCount}</p>
           <p>Total: {user.total}</p>
@@ -47,6 +47,7 @@ function mapStateToProps({ users}) {
       answerCount: Object.values(user.answers).length,
       questionCount: user.questions.length,
       total: Object.values(user.answers).length + user.questions.length,
+      
     }))
     .sort((a, b) => a.total - b.total)
     .reverse()

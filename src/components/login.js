@@ -1,17 +1,14 @@
 import React from "react"
 import animals from "./images/avatars/animals.png"
-import users from "../utils/DATA"
-import {setAuthedUser} from "./actions/authedusers"
-import {useDispatch, useSelector} from "react-redux";
-import {Link} from 'react-router-dom';
+import {useDispatch} from "react-redux";
 import {useHistory} from "react-router-dom"
 
 
 function Login (){
-    const [isLoggedIn, setIsLoggedIn] = React.useState(false)
+   
     const [userId, setId] = React.useState("")
     const dispatch= useDispatch()
-    const setAuthedUser = useSelector(state => state.authedUser)
+    
     const history= useHistory();
 
     function selectId(event) {
@@ -23,12 +20,10 @@ function Login (){
 
     function handleSubmit (event){
         event.preventDefault()
-        setIsLoggedIn(true)
+        
         if (history.location.pathname.match("/home") || history.location.pathname === '/') {
             history.push("/home");
-        } else {
-            history.push('/404');
-        }
+        } 
         dispatch({
             type: 'SET_AUTHED_USER', 
             payload: userId
@@ -39,7 +34,7 @@ function Login (){
     return(
         <div className="ui-container">   
             <h1>Please sign in to continue</h1>
-                <img src={animals} ></img>
+                <img src={animals} alt="" ></img>
                 <form>
                 <label >Please select a name:</label>
                 <select onChange={(event) => selectId(event)}>
@@ -51,7 +46,7 @@ function Login (){
                     
                     
                 </select>
-                <button onClick={handleSubmit} disabled={userId == ""}> 
+                <button onClick={handleSubmit} disabled={userId === ""}> 
                     login
                 </button>
                 </form>

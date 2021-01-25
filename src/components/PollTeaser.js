@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {connect, useSelector} from 'react-redux';
+import {connect} from 'react-redux';
 import Question from './question';
 
 function PollTeaser({answered, unanswered}){
@@ -12,22 +12,18 @@ function PollTeaser({answered, unanswered}){
     const setToUnAnswered =()=>{
       setIsAnswered(false);
     }
-    const state = useSelector(state => state);
-    // console.log('answered')
-    // console.log(answered)
-    // console.log('unanswered')
-    // console.log(unanswered)
+    
     
     
   return(
       <div>
 
         <div style= {{display:"flex"}}>
-          <a className={!isAnswered?"btn active ": "btn" }
-          onClick={setToUnAnswered}>Unanswered Questions</a>
+          <button className={!isAnswered?"btn active ": "btn" }
+          onClick={setToUnAnswered}>Unanswered Questions</button>
 
-          <a className= {isAnswered?"btn active": "btn"}
-          onClick={setToAnswered}>Answered Questions</a>
+          <button className= {isAnswered?"btn active": "btn"}
+          onClick={setToAnswered}>Answered Questions</button>
 
         </div>
 

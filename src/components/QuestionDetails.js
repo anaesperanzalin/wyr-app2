@@ -1,7 +1,5 @@
 import React from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { RECEIVE_ANSWER } from "./actions/shared";
 import NavMenu from "./NavMenu";
 import { saveAnswer } from "./actions/shared";
 
@@ -19,8 +17,6 @@ function QuestionDetails({
   answerId,
 }) {
   const state = useSelector((state) => state);
-
-  const [answered, setAnswered] = React.useState(false);
   const [value, setValue] = React.useState("");
 
   const dispatch = useDispatch();
@@ -31,7 +27,6 @@ function QuestionDetails({
 
   const answerQuestion = (event) => {
     event.preventDefault();
-    setAnswered(true);
     const answerId = value;
 
     dispatch(saveAnswer({ authedUser, questionId, answerId }));
@@ -50,7 +45,7 @@ function QuestionDetails({
         <NavMenu />
         <div>
           <img
-            src={state.users[state.questions[questionId].author].avatarURL}
+            src={state.users[state.questions[questionId].author].avatarURL} alt=""
           />
 
           {!answerId ? (
@@ -119,57 +114,6 @@ function QuestionDetails({
       </div>
     </div>
   );
-}
-{
-  /*       
-        
-        <h2> {username} asks:</h2>
-      </div>
-      <div>
-        <div>
-          <h2>Would you rather </h2>
-          <h2>
-            <button onClick={event => handleClick(event)} value="optionOne">
-              {optionOne}
-            </button>
-          </h2>
-          <h2> or </h2>
-          <h2>
-            <button onClick={handleClick} value="optionTwo">
-              {optionTwo}
-            </button>
-          </h2>
-        </div>
-        <div>
-          <br />
-          <br />
-
-          {hasUserVoted && (
-            <React.Fragment>
-              <h3>RESULTS</h3>
-              <h2> {optionOne}</h2>
-              <h2>
-                 {optionOneVotes} out of {totalVotes} voted this
-              </h2>
-              <h2>That's {optionOnePercent().toString().slice(0, 5)}% </h2>
-              <br />
-              <br />
-              <br />
-              <h2> {optionTwo}</h2>
-              <h2>
-                {" "}
-                {optionTwoVotes} out of {totalVotes} voted this
-              </h2>
-              <h2>
-                That's {optionTwoPercent().toString().slice(0, 5)} %{" "}
-              </h2>
-            </React.Fragment>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-} */
 }
 
 function mapStateToProps(state, { id }) {

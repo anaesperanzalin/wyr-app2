@@ -1,14 +1,12 @@
 import React from "react"
-import {useDispatch, useSelector} from "react-redux"
+import {useDispatch} from "react-redux"
 import {saveQuestion} from "./actions/shared"
-import Home from "./home"
 import {connect} from "react-redux"
 import NavMenu from "./NavMenu"
 import { Redirect } from 'react-router-dom'
 
 
 function NewPoll (authedUser){
-    const state = useSelector((state) => state)
     const [optionOneText, setOptionOneText] = React.useState("")
     const [optionTwoText, setOptionTwoText] = React.useState("")
     const [toHome, setHome]= React.useState(false)

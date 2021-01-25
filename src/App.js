@@ -1,14 +1,10 @@
 import React, { useEffect } from "react";
 import Login from "./components/login";
 import Home from "./components/home";
-import { Provider } from "react-redux";
-import { store } from "./index";
 import { getInitialData } from "./components/actions/shared";
 import {
   BrowserRouter as Router,
   Route,
-  Link,
-  Redirect,
   Switch
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,7 +17,7 @@ import NoMatch from "./components/NoMatch"
 
 function App() {
   const dispatch = useDispatch();
-  const [value, setValue] = React.useState('')
+  
 
   useEffect(() => {
     dispatch(getInitialData());
@@ -33,12 +29,19 @@ function App() {
     <Router>
       <Switch>
       <Route exact path="/" render={() => <Login />} />
-      <Route exact path="/add" render={() => <NewPoll />} />
+      <Route exact path="/add" 
+        render={() => (authUser && authUser.userId ? <NewPoll /> : <Login />) } />
       <Route exact path="/404" render={() => <NoMatch />} />
-      <Route exact path="/leaderboard" render={() => <LeaderBoard />} />
+      <Route exact path="/leaderboard" 
+      render={() => (authUser && authUser.userId ? <LeaderBoard/> : <Login/>)} />
+
       <Route
         exact path="/home/"
         render={() => (authUser && authUser.userId ? <Home /> : <Login />)}      />
+
+
+
+
       <Route
         exact path="/question/:id"
         render={({ match }) => {
