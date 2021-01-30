@@ -31,7 +31,8 @@ function App() {
       <Route exact path="/" render={() => <Login />} />
       <Route exact path="/add" 
         render={() => (authUser && authUser.userId ? <NewPoll /> : <Login />) } />
-      <Route exact path="/404" render={() => <NoMatch />} />
+      <Route exact path="/404" 
+      render ={() => (authUser && authUser.userId ? <NoMatch /> : <Login />) } />
       <Route exact path="/leaderboard" 
       render={() => (authUser && authUser.userId ? <LeaderBoard/> : <Login/>)} />
 
@@ -54,7 +55,7 @@ function App() {
           );
         }}
       />
-      <Route path ="*"> <NoMatch/></Route> 
+      <Route component={NoMatch} />
       </Switch>
     </Router>
   );

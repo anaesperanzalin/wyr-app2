@@ -2,10 +2,10 @@ import React from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
 import NavMenu from "./NavMenu";
 import { saveAnswer } from "./actions/shared";
+import NoMatch from "./NoMatch"
 
 function QuestionDetails({
   authedUser,
-  authUserId,
   username,
   optionOne,
   optionTwo,
@@ -13,8 +13,8 @@ function QuestionDetails({
   optionOneVotes,
   optionTwoVotes,
   totalVotes,
-  answer,
   answerId,
+  nomatchId,
 }) {
   const state = useSelector((state) => state);
   const [value, setValue] = React.useState("");
@@ -39,6 +39,11 @@ function QuestionDetails({
     return (optionTwoVotes / totalVotes) * 100;
   };
 
+  if (nomatchId) return (
+    <div>
+      <NoMatch/>
+    </div>
+    )
   return (
     <div>
       <div>
@@ -119,6 +124,11 @@ function QuestionDetails({
 function mapStateToProps(state, { id }) {
   // console.log('state')
   // console.log(state)
+
+  if (state.questions[id] === undefined ) {
+    return {
+    nomatchId: true
+  }}
 
   const user = state.users[state.questions[id].author];
   const authUser = state.authUser.userId;

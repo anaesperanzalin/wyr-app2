@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
 import setAuthedUser from "./actions/authedusers";
+import Login from "./login";
 
 function NavMenu() {
   
@@ -13,6 +14,11 @@ function NavMenu() {
     history.push("/");
   };
 
+  console.log('state.authUser', state.authUser)
+
+  if (!state.authUser.loggedIn) return (
+    <Login/>
+  )
   return (
     <div className="ui secondary pointing menu">
       <Link to={`/home`}>Home</Link>
